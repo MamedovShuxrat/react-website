@@ -1,10 +1,17 @@
+import { useState } from 'react'
 import CardStyle from './Cards.module.scss'
 
-function Card(props) {
-    const { title, price, imgUrl } = props
+function Card({ title, price, imgUrl, onClickFavorite, onClickPlus }) {
+    const [isAdd, setIsAdd] = useState(false)
+
+    const handlePlus = () => {
+        onClickPlus({ title, price, imgUrl })
+        setIsAdd(!isAdd)
+    }
+
     return (
-        <div className={CardStyle.card}>
-            <div className={CardStyle.favorite}>
+        <div className={CardStyle.card} >
+            <div className={CardStyle.favorite}  >
                 <img src="/img/unliked.svg" alt="unliked" />
             </div>
             <img className="mb-15" width={133} height={122} src={imgUrl} alt="sneakers" />
@@ -14,9 +21,7 @@ function Card(props) {
                     <span>Цена:</span>
                     <b>{price}</b>
                 </div>
-                <button className={CardStyle.btn}>
-                    <img width={11} height={11} src="/img/btn-plus.svg" alt="btn" />
-                </button>
+                <img className={CardStyle.btn} onClick={handlePlus} src={isAdd ? "/img/btn-checked.svg " : "/img/btn-plus.svg"} alt="btn" />
             </div>
         </div>
     )

@@ -1,4 +1,4 @@
-function Header() {
+function Header({ openCart }) {
     return (
         <header className="d-flex justify-between align-center p-40">
             <div className="header_left d-flex align-center">
@@ -9,7 +9,7 @@ function Header() {
                 </div>
             </div>
             <ul className="header_right d-flex">
-                <li className="mr-30 cu-p">
+                <li onClick={openCart} className="mr-30 cu-p" >
                     <img className="mr-10" width={18} height={18} src="/img/cart.svg" alt="cart" />
                     <span>1205 руб</span>
                 </li>

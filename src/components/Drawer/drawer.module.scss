@@ -34,19 +34,19 @@
     padding: 20px;
     margin-bottom: 20px;
 
-
     p {
         font-size: 14px;
     }
 
-    .removeBtn {
-        opacity: .4;
-        transition: opacity .3s ease-in-out;
-        cursor: pointer;
+}
 
-        &:hover {
-            opacity: 1;
-        }
+.removeBtn {
+    opacity: .4;
+    transition: opacity .3s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 1;
     }
 }
 
