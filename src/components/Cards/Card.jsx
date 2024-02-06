@@ -1,18 +1,24 @@
 import { useState } from 'react'
 import CardStyle from './Cards.module.scss'
 
-function Card({ title, price, imgUrl, onClickFavorite, onClickPlus }) {
-    const [isAdd, setIsAdd] = useState(false)
+function Card({ id, title, imgUrl, price, onFavorite, onPlus, favorited = false }) {
+    const [isAdded, setIsAdded] = useState(false)
+    const [isFavorite, setIsFavorite] = useState(favorited)
 
-    const handlePlus = () => {
-        onClickPlus({ title, price, imgUrl })
-        setIsAdd(!isAdd)
+    const onClickPlus = () => {
+        onPlus({ title, imgUrl, price })
+        setIsAdded(!isAdded)
+    }
+
+    const onClickFavorite = () => {
+        onFavorite({ id, title, imgUrl, price })
+        setIsFavorite(!isFavorite)
     }
 
     return (
         <div className={CardStyle.card} >
-            <div className={CardStyle.favorite}  >
-                <img src="/img/unliked.svg" alt="unliked" />
+            <div className={CardStyle.favorite} onClick={onClickFavorite}>
+                <img src={isFavorite ? '/img/liked.svg' : '/img/unliked.svg'} alt="Unliked" />
             </div>
             <img className="mb-15" width={133} height={122} src={imgUrl} alt="sneakers" />
             <p className="mb-15" >{title}</p>
@@ -21,7 +27,7 @@ function Card({ title, price, imgUrl, onClickFavorite, onClickPlus }) {
                     <span>Цена:</span>
                     <b>{price}</b>
                 </div>
-                <img className={CardStyle.btn} onClick={handlePlus} src={isAdd ? "/img/btn-checked.svg " : "/img/btn-plus.svg"} alt="btn" />
+                <img className={CardStyle.btn} onClick={onClickPlus} src={isAdded ? "/img/btn-checked.svg " : "/img/btn-plus.svg"} alt="btn" />
             </div>
         </div>
     )

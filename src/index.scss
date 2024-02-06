@@ -24,7 +24,51 @@ body {
   margin: 50px auto;
 }
 
+.cartEmpty {
+  text-align: center;
 
+  p {
+    width: 280px;
+    line-height: 24px;
+  }
+
+  .greenButton {
+    width: 245px;
+    margin-top: 20px;
+
+    &:hover {
+      img {
+        transform: rotate(180deg) translateX(3px);
+      }
+    }
+
+    img {
+      position: relative;
+      top: 1px;
+      transform: rotate(180deg);
+      margin-right: 15px;
+      transition: transform 0.15s ease-in-out;
+    }
+
+    width: 100%;
+    border-radius: 18px;
+    height: 55px;
+    background: #9dd458;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background .3s ease-in-out;
+
+    &:hover {
+      background: lighten(#9dd458, 10%);
+    }
+
+    &:active {
+      background: darken(#9dd458, 5%);
+
+    }
+  }
+}
 
 .greenBtn {
   position: relative;
@@ -51,6 +95,16 @@ header {
   border: 1px solid #f3f3f3;
   border-radius: 10px;
   padding: 0 15px;
+  position: relative;
+
+  .inputClose {
+    position: absolute;
+    right: 0;
+    top: 13px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
 
   input {
     font-size: 16px;
