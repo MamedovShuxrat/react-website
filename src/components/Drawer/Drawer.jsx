@@ -1,6 +1,28 @@
 import DrawerStyle from './drawer.module.scss'
+import Info from '../Info/Info'
+import { useState } from 'react'
+import axios from 'axios'
+import { useCart } from '../../hooks/useCart'
 
 function Drawer({ onClose, onRemove, items = [] }) {
+    const { cartItems, setCartItems, totalCartSum } = useCart()
+    const [isOrderComplete, setIsOrderComplete] = useState(false)
+    const [orderId, setOrderId] = useState(null)
+    const [isLoading, setIsLoading] = useState(false)
+
+    const onClickOrder = async () => {
+        try {
+            setIsLoading(true)
+            const { data } = await axios.post(' https://65c13fcddc74300bce8d824b.mockapi.io/orders', { items: cartItems })
+            setOrderId(data.id)
+            setIsOrderComplete(true)
+            setCartItems([])
+        } catch (error) {
+            console.error('Что-то пошло не по плану :( ')
+        }
+        setIsLoading(false)
+
+    }
 
 
     return (
@@ -8,10 +30,10 @@ function Drawer({ onClose, onRemove, items = [] }) {
             <div className={DrawerStyle.drawer}>
                 <h3 className="mb-30 d-flex justify-between">Корзина <img onClick={onClose} className={DrawerStyle.removeBtn} src="/img/btn-remove.svg" alt="close btn" /></h3>
                 {items.length > 0 ? (
-                    <div>
+                    <div className='d-flex flex-column flex'>
                         <div className={DrawerStyle.cartWrapper}>
-                            {items.map((obj) => (
-                                <div className={DrawerStyle.cartItem}>
+                            {items.map((obj, index) => (
+                                <div key={index} className={DrawerStyle.cartItem}>
                                     <img className="mr-20" width={70} height={70} src={obj.imgUrl} alt="snekears" />
                                     <div className="mr-20 flex">
                                         <p className="mb-5">{obj.title}</p>
@@ -31,29 +53,25 @@ function Drawer({ onClose, onRemove, items = [] }) {
                                 <li>
                                     <span>Итого:</span>
                                     <div></div>
-                                    <b>21 498 руб. </b>
+                                    <b>{totalCartSum} руб. </b>
                                 </li>
                                 <li>
                                     <span>Налог 5%:</span>
                                     <div></div>
-                                    <b>1074 руб. </b>
+                                    <b>{Math.floor(totalCartSum / 100 * 5)} руб. </b>
                                 </li>
                             </ul>
-                            <button className="greenBtn">
+                            <button disabled={isLoading} onClick={onClickOrder} className="greenBtn">
                                 Оформить заказ <img src="/img/arrow.svg" alt="Arrow" />
                             </button>
                         </div>
                     </div>
                 ) : (
-                    <div class="cartEmpty d-flex align-center justify-center flex-column flex">
-                        <img class="mb-20" width="120px" height="120px" src="/img/empty-cart.jpg" alt="Empty" />
-                        <h2>Корзина пустая</h2>
-                        <p class="opacity-6">Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.</p>
-                        <button onClick={onClose} class="greenButton">
-                            <img src="/img/arrow.svg" alt="Arrow" />
-                            Вернуться назад
-                        </button>
-                    </div>
+                    <Info
+                        title={isOrderComplete ? "Заказ оформлен!" : "Корзина пустая"}
+                        description={isOrderComplete ? `Ваш заказ ${orderId} скоро будет передан курьерской доставке` : "Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."}
+                        imgUrl={isOrderComplete ? "/img/complete-order.jpg" : "/img/empty-cart.jpg"}
+                    />
                 )}
             </div>
         </div>

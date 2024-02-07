@@ -1,0 +1,116 @@
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #e7f6ff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter";
+}
+
+.wrapper {
+  background: #FFFFFF;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 20px;
+  max-width: 1080px;
+  margin: 50px auto;
+}
+
+.cartEmpty {
+  text-align: center;
+}
+.cartEmpty p {
+  width: 280px;
+  line-height: 24px;
+}
+.cartEmpty .greenButton {
+  width: 245px;
+  margin-top: 20px;
+  position: relative;
+  width: 100%;
+  border-radius: 18px;
+  height: 55px;
+  background: #9dd458;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+.cartEmpty .greenButton:disabled {
+  animation: button-loading 0.6s ease-in-out infinite;
+}
+.cartEmpty .greenButton:hover img {
+  transform: rotate(180deg) translateX(3px);
+}
+.cartEmpty .greenButton img {
+  position: relative;
+  top: 1px;
+  transform: rotate(180deg);
+  margin-right: 15px;
+  transition: transform 0.15s ease-in-out;
+}
+.cartEmpty .greenButton:hover {
+  background: #b5de81;
+}
+.cartEmpty .greenButton:active {
+  background: #91cf44;
+}
+
+.greenBtn {
+  position: relative;
+}
+.greenBtn:disabled {
+  animation: button-loading 0.6s ease-in-out infinite;
+}
+.greenBtn:hover {
+  background: #a9da6c;
+}
+.greenBtn:hover img {
+  transform: translateX(5px);
+}
+.greenBtn img {
+  position: absolute;
+  right: 30px;
+  top: 20px;
+  transition: transform 0.1s ease-in-out;
+}
+
+header {
+  border-bottom: 1px solid #EAEAEA;
+}
+
+.search_block {
+  border: 1px solid #f3f3f3;
+  border-radius: 10px;
+  padding: 0 15px;
+  position: relative;
+}
+.search_block .inputClose {
+  position: absolute;
+  right: 0;
+  top: 13px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+.search_block input {
+  font-size: 16px;
+  border: 0;
+  padding: 15px;
+}
+
+@keyframes button-load {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}/*# sourceMappingURL=index.css.map */

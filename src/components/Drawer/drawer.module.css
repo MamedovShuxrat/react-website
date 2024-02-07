@@ -1,0 +1,83 @@
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}
+
+.drawer {
+  padding: 30px;
+  position: absolute;
+  width: 420px;
+  height: 100%;
+  right: 0;
+  background-color: #fff;
+  box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.cartWrapper {
+  flex: 1;
+  overflow: auto;
+}
+
+.cartItem {
+  border: 1px solid #f3f3f3;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.cartItem p {
+  font-size: 14px;
+}
+
+.removeBtn {
+  opacity: 0.4;
+  transition: opacity 0.3s ease-in-out;
+  cursor: pointer;
+}
+.removeBtn:hover {
+  opacity: 1;
+}
+
+.cartTotal ul {
+  margin-bottom: 20px;
+}
+.cartTotal ul li {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+.cartTotal ul div {
+  flex: 1;
+  border-bottom: 1px dashed #f3f3f3;
+  position: relative;
+  top: -4px;
+  margin: 0 10px;
+}
+.cartTotal button {
+  width: 100%;
+  border-radius: 18px;
+  height: 55px;
+  background: #9dd458;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+.cartTotal button:disabled {
+  background-color: #bebebe !important;
+  cursor: default;
+}
+.cartTotal button:hover {
+  background: #b5de81;
+}
+.cartTotal button:active {
+  background: #91cf44;
+}/*# sourceMappingURL=drawer.module.css.map */
